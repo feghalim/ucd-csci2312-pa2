@@ -13,22 +13,22 @@ namespace Clustering {
         static unsigned int __idGen; // id generator
 
     public:
-        Point(int);
-        Point(int, double *);
+        Point(int dim);
+        Point(int dim, double * val);
 
         // Big three: cpy ctor, overloaded operator=, dtor
-        Point(const Point &);
-        Point &operator=(const Point &);
+        Point(const Point &p);
+        Point &operator=(const Point &p);
         ~Point();
 
         // Accessors & mutators
         int getId() const;
         int getDims() const;
-        void setValue(int, double);
-        double getValue(int) const;
+        void setValue(int pt, double val);
+        double getValue(int pt) const;
 
         // Functions
-        double distanceTo(const Point &) const;
+        double distanceTo(const Point &p) const;
 
         // Overloaded operators
 
@@ -41,21 +41,21 @@ namespace Clustering {
         double &operator[](int index);
 
         // Friends
-        friend Point &operator+=(Point &, const Point &);
-        friend Point &operator-=(Point &, const Point &);
-        friend const Point operator+(const Point &, const Point &);
-        friend const Point operator-(const Point &, const Point &);
+        friend Point &operator+=(Point &p1, const Point &p2);
+        friend Point &operator-=(Point &p1, const Point &p2);
+        friend const Point operator+(const Point &p1, const Point &p2);
+        friend const Point operator-(const Point &p1, const Point &p2);
 
-        friend bool operator==(const Point &, const Point &);
-        friend bool operator!=(const Point &, const Point &);
+        friend bool operator==(const Point &p1, const Point &p2);
+        friend bool operator!=(const Point &p1, const Point &p2);
 
-        friend bool operator<(const Point &, const Point &);
-        friend bool operator>(const Point &, const Point &);
-        friend bool operator<=(const Point &, const Point &);
-        friend bool operator>=(const Point &, const Point &);
+        friend bool operator<(const Point &p1, const Point &p2);
+        friend bool operator>(const Point &p1, const Point &p2);
+        friend bool operator<=(const Point &p1, const Point &p2);
+        friend bool operator>=(const Point &p1, const Point &p2);
 
-        friend std::ostream &operator<<(std::ostream &, const Point &);
-        friend std::istream &operator>>(std::istream &, Point &);
+        friend std::ostream &operator<<(std::ostream &os, const Point &p);
+        friend std::istream &operator>>(std::istream &is, Point &p);
     };
 
 }
