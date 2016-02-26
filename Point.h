@@ -9,7 +9,6 @@ namespace Clustering {
         unsigned int __id;
         int __dim;        // number of dimensions of the point
         double *__values; // values of the point's dimensions
-
         static unsigned int __idGen; // id generator
 
     public:
@@ -33,10 +32,10 @@ namespace Clustering {
         // Overloaded operators
 
         // Members
-        Point &operator*=(double); // p *= 6; p.operator*=(6);
-        Point &operator/=(double);
-        const Point operator*(double) const; // prevent (p1 * 2) = p2;
-        const Point operator/(double) const; // p3 = p2 / 2;
+        Point &operator*=(double d); // p *= 6; p.operator*=(6);
+        Point &operator/=(double d);
+        const Point operator*(double d) const; // prevent (p1 * 2) = p2;
+        const Point operator/(double d) const; // p3 = p2 / 2;
 
         double &operator[](int index);
 
