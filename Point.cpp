@@ -113,7 +113,7 @@ std::istream & operator>>(std::istream &is, Point &p) {
 }
 
 bool operator==(const Point &p1, const Point &p2) {
-    if(p1.getDims() == p2.getDims()) {
+    if(p1.getId() == p2.getId()) {
         for(int i = 0; i < p1.getDims();) {
             if(p1.getValue(i) == p2.getValue(i)) {
                 i++;
