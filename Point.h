@@ -41,7 +41,23 @@ namespace Clustering {
 
         // Friends
         friend Point &operator+=(Point &p1, const Point &p2) {
+            int dim;
 
+            if (p1.getDims() > p2.getDims()) {
+                dim = p1.getDims();
+            }
+            else {
+                dim = p2.getDims();
+
+                delete [] p1.__values;
+                p1.__values = new double[dim];
+            }
+
+            for (int i = 0; i < dim; i++) {
+                p1.setValue(i, p2.getValue(i));
+            }
+
+            return p1;
         }
         friend Point &operator-=(Point &p1, const Point &p2) {
 
@@ -53,23 +69,20 @@ namespace Clustering {
 
         }
         friend bool operator==(const Point &p1, const Point &p2) {
-            if(p1.getId() == p2.getId()) {
-                for(int i = 0; i < p1.getDims();) {
-                    if(p1.getValue(i) == p2.getValue(i)) {
-                        i++;
-                    }
-                    else {
+            if(p1.getId() != p2.getId()) {
+                return false;
+            }
+            else {
+                for (int i = 0; i < p1.__dim; i++) {
+                    if (p1.__values[i] != p2.__values[i]) {
                         return false;
                     }
                 }
             }
-            else {
-                return false;
-            }
             return true;
         }
         friend bool operator!=(const Point &p1, const Point &p2) {
-            if(p1.getDims() == p2.getDims()) {
+            if(p1.getId() == p2.getId()) {
                 for(int i = 0; i < p1.getDims();) {
                     if(p1.getValue(i) == p2.getValue(i)) {
                         return false;
