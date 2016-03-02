@@ -2,6 +2,8 @@
 #define CLUSTERING_POINT_H
 
 #include <iostream>
+#include <sstream>
+#include <algorithm>
 
 namespace Clustering {
 
@@ -60,7 +62,23 @@ namespace Clustering {
             return p1;
         }
         friend Point &operator-=(Point &p1, const Point &p2) {
+            int dim;
 
+            if (p1.getDims() > p2.getDims()) {
+                dim = p1.getDims();
+            }
+            else {
+                dim = p2.getDims();
+
+                delete [] p1.__values;
+                p1.__values = new double[dim];
+            }
+
+            for (int i = 0; i < dim; i++) {
+                p1.setValue(i, p1.getValue(i) - p2.getValue(i));
+            }
+
+            return p1;
         }
         friend const Point operator+(const Point &p1, const Point &p2) {
 
@@ -149,12 +167,33 @@ namespace Clustering {
             }
         }
         friend std::istream &operator>>(std::istream &is, Point &p) {
-            double temp;
+            std::string input;
 
-            for(int i =0; i < p.getDims(); i++) {
-                is >> temp;
-                p.setValue(i, temp);
+
+            std::getline(is, input);
+            int size = std::count(input.begin(), input.end(), ',') + 1;
+
+            std::stringstream ss(input);
+
+
+            if (p.getDims() != size) {
+                delete [] p.__values;
+                p.__dim = size;
+                p.__values = new double[size];
             }
+
+            int i = 0;
+
+            while (!ss.eof()) {
+                std::string values;
+                getline(ss, values, ',');
+
+                std::stringstream ssIn(values);
+                ssIn >> p.__values[i];
+
+                ++i;
+            }
+            return is;
         }
     };
 

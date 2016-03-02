@@ -40,7 +40,12 @@ Point::~Point() {
 }
 
 double &Point::operator[](int index) {
-    return __values[index];
+    if (index <= __dim && index >= 0) {
+        return __values[index];
+    }
+    else {
+        return __values[0];
+    }
 }
 
 int Point::getId() const {
@@ -48,7 +53,12 @@ int Point::getId() const {
 }
 
 double Point::getValue(int pt) const {
-    return __values[pt];
+    if (pt <= __dim && pt >= 0) {
+        return __values[pt];
+    }
+    else {
+        return false;
+    }
 }
 
 int Point::getDims() const {
@@ -56,7 +66,9 @@ int Point::getDims() const {
 }
 
 void Point::setValue(int pt, double val) {
-    __values[pt] = val;
+    if (pt <= __dim && pt >= 0) {
+        __values[pt] = val;
+    }
 }
 
 double Point::distanceTo(const Point &p) const {
