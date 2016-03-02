@@ -15,6 +15,8 @@
 #include <set>
 
 #include "ErrorContext.h"
+#include "Cluster.h"
+#include "Point.h"
 
 using std::string;
 using std::ios;

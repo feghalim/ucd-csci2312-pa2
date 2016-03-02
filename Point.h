@@ -40,21 +40,109 @@ namespace Clustering {
         double &operator[](int index);
 
         // Friends
-        friend Point &operator+=(Point &p1, const Point &p2);
-        friend Point &operator-=(Point &p1, const Point &p2);
-        friend const Point operator+(const Point &p1, const Point &p2);
-        friend const Point operator-(const Point &p1, const Point &p2);
+        friend Point &operator+=(Point &p1, const Point &p2) {
 
-        friend bool operator==(const Point &p1, const Point &p2);
-        friend bool operator!=(const Point &p1, const Point &p2);
+        }
+        friend Point &operator-=(Point &p1, const Point &p2) {
 
-        friend bool operator<(const Point &p1, const Point &p2);
-        friend bool operator>(const Point &p1, const Point &p2);
-        friend bool operator<=(const Point &p1, const Point &p2);
-        friend bool operator>=(const Point &p1, const Point &p2);
+        }
+        friend const Point operator+(const Point &p1, const Point &p2) {
 
-        friend std::ostream &operator<<(std::ostream &os, const Point &p);
-        friend std::istream &operator>>(std::istream &is, Point &p);
+        }
+        friend const Point operator-(const Point &p1, const Point &p2) {
+
+        }
+        friend bool operator==(const Point &p1, const Point &p2) {
+            if(p1.getId() == p2.getId()) {
+                for(int i = 0; i < p1.getDims();) {
+                    if(p1.getValue(i) == p2.getValue(i)) {
+                        i++;
+                    }
+                    else {
+                        return false;
+                    }
+                }
+            }
+            else {
+                return false;
+            }
+            return true;
+        }
+        friend bool operator!=(const Point &p1, const Point &p2) {
+            if(p1.getDims() == p2.getDims()) {
+                for(int i = 0; i < p1.getDims();) {
+                    if(p1.getValue(i) == p2.getValue(i)) {
+                        return false;
+                    }
+                    else {
+                        i++;
+                    }
+                }
+                return true;
+            }
+            else {
+                return true;
+            }
+        }
+
+        friend bool operator<(const Point &p1, const Point &p2) {
+            for (int i = 0; i < p1.getDims();) {
+                if(p1.getValue(i) < p2.getValue(i)) {
+                    i++;
+                }
+                else {
+                    return false;
+                }
+            }
+            return true;
+        }
+        friend bool operator>(const Point &p1, const Point &p2) {
+            for (int i = 0; i < p1.getDims();) {
+                if (p1.getValue(i) > p2.getValue(i)) {
+                    i++;
+                }
+                else {
+                    return false;
+                }
+                return true;
+            }
+        }
+        friend bool operator<=(const Point &p1, const Point &p2) {
+            for (int i = 0; i < p1.getDims();) {
+                if (p1.getValue(i) <= p2.getValue(i)) {
+                    i++;
+                }
+                else {
+                    return false;
+                }
+                return true;
+            }
+        }
+        friend bool operator>=(const Point &p1, const Point &p2) {
+            for (int i = 0; i < p1.getDims();) {
+                if (p1.getValue(i) >= p2.getValue(i)) {
+                    i++;
+                }
+                else {
+                    return false;
+                }
+                return true;
+            }
+        }
+
+        friend std::ostream &operator<<(std::ostream &os, const Point &p) {
+            for(int i = 0; i < p.getDims(); i++) {
+                os << p.getValue(i) << ", ";
+            }
+        }
+        friend std::istream &operator>>(std::istream &is, Point &p) {
+            double temp;
+
+            for(int i =0; i < p.getDims(); i++) {
+                is >> temp;
+                p.setValue(i, temp);
+            }
+        }
     };
 
 }

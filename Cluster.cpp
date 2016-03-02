@@ -2,8 +2,8 @@
 // Created by Mario on 2/25/2016.
 //
 
-#include <wincon.h>
 #include "Cluster.h"
+#include "Point.h"
 
 using namespace Clustering;
 
@@ -11,6 +11,8 @@ Cluster::Cluster() {
     __size = 0;
     __points = NULL;
 }
+
+LNode::LNode(const Point &p, LNodePtr n) : point(p), next(n) { }
 
 Cluster::Cluster(const Cluster &c) {
     this->__points = c.__points;

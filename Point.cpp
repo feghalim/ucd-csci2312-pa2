@@ -7,8 +7,8 @@
 using namespace Clustering;
 
 Point::Point(int dim) {
-    __id = __idGen;
-    __idGen++;
+//    __id = __idGen;
+//    __idGen++;
     __dim = dim;
     __values = new double[dim];
 }
@@ -95,101 +95,4 @@ const Point operator+(const Point p1, const Point p2) {
         p3->setValue(i, p2.getValue(i - temp));
     }
     return *p3;
-}
-
-std::ostream & operator<<(std::ostream &os, const Point& p) {
-    for(int i = 0; i < p.getDims(); i++) {
-        os << p.getValue(i) << ", ";
-    }
-}
-
-std::istream & operator>>(std::istream &is, Point &p) {
-    double temp;
-
-    for(int i =0; i < p.getDims(); i++) {
-        is >> temp;
-        p.setValue(i, temp);
-    }
-}
-
-bool operator==(const Point &p1, const Point &p2) {
-    if(p1.getId() == p2.getId()) {
-        for(int i = 0; i < p1.getDims();) {
-            if(p1.getValue(i) == p2.getValue(i)) {
-                i++;
-            }
-            else {
-                return false;
-            }
-        }
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-
-bool operator!=(const Point &p1, const Point &p2) {
-    if(p1.getDims() == p2.getDims()) {
-        for(int i = 0; i < p1.getDims();) {
-            if(p1.getValue(i) == p2.getValue(i)) {
-                return false;
-            }
-            else {
-                i++;
-            }
-        }
-        return true;
-    }
-    else {
-        return true;
-    }
-}
-
-bool operator <(const Point &p1, const Point &p2) {
-    for (int i = 0; i < p1.getDims();) {
-        if(p1.getValue(i) < p2.getValue(i)) {
-            i++;
-        }
-        else {
-            return false;
-        }
-        return true;
-    }
-}
-
-bool operator >(const Point &p1, const Point &p2) {
-    for (int i = 0; i < p1.getDims();) {
-        if (p1.getValue(i) > p2.getValue(i)) {
-            i++;
-        }
-        else {
-            return false;
-        }
-        return true;
-    }
-}
-
-bool operator<=(const Point &p1, const Point &p2) {
-    for (int i = 0; i < p1.getDims();) {
-        if(p1.getValue(i) <= p2.getValue(i)) {
-            i++;
-        }
-        else {
-            return false;
-        }
-        return true;
-    }
-}
-
-bool operator>=(const Point &p1, const Point &p2) {
-    for (int i = 0; i < p1.getDims();) {
-        if (p1.getValue(i) >= p2.getValue(i)) {
-            i++;
-        }
-        else {
-            return false;
-        }
-        return true;
-    }
 }
