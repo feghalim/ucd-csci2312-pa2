@@ -6,4 +6,4 @@ On the canvas page for PA2, the program states that only the Point.cpp and Clust
 
 **FUNCTIONALITY**
 
-Program currently runs but some functions will not finish running presumably due to an issue with CMake on my machine. I have tried manually debugging the program and all functions work correctly
+Program currently runs but some functions will not finish running presumably due to an issue with CMake on my machine. I have tried manually debugging the program and all functions seem to work in my testing. Program sometimes hangs on Cluster Subscript, Order, Add/Remove, and IO tests. Can be commented out if needed.
